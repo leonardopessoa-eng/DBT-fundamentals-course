@@ -1,3 +1,5 @@
+
+-- TROCAR POR MACRO QUE FAZ ISSO AUTOMATICAMENTE!!!
 {% set payment_methods = ['credit_card', 'coupon', 'bank_transfer', 'gift_card'] %}
 {% set order_methods = ['placed', 'shipped', 'completed', 'returned', 'return_pending'] %}
 
