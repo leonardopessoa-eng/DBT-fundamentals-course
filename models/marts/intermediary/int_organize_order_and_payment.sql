@@ -1,7 +1,14 @@
+{% set paymente_methods = dbt_utils.get_column_values(
+    table = ref('int_order_and_payment'), 
+    column = 'payment_method'
+    ) 
+%}
 
--- TROCAR POR MACRO QUE FAZ ISSO AUTOMATICAMENTE!!!
-{% set payment_methods = ['credit_card', 'coupon', 'bank_transfer', 'gift_card'] %}
-{% set order_methods = ['placed', 'shipped', 'completed', 'returned', 'return_pending'] %}
+{% set order_methods = dbt_utils.get_column_values(
+    table = ref('int_order_and_payment'), 
+    column = 'order_status'
+    ) 
+%}
 
 with order_and_payment as (
 
@@ -19,13 +26,12 @@ organize_order_payment as (
 
         order_status,
         {% for payment_mode in payment_methods %}
-            {%- for order_mode in order_methods -%}
-        
-        sum((case when (payment_method = '{{ payment_mode }}' and order_status = '{{ order_mode }}') then 1 else 0 end)) as {{ payment_mode }} 
-        {% if not loop.last %}
-            ,
-        {% endif %}    
-            {% endfor %}
+            {%- for order_mode in order_methods -%}        
+            sum((case when (payment_method = '{{ payment_mode }}' and order_status = '{{ order_mode }}') then 1 else 0 end)) as {{ payment_mode }} 
+            {% if not loop.last %}
+                ,
+            {% endif %}    
+        {% endfor %}
         {% if not loop.last %}
             ,
         {% endif %}     
