@@ -1,11 +1,10 @@
-Welcome to your new dbt project!
+Welcome to my first dbt project! This is a project developed during the training in dbt fundamentals course.
 
 ### Using the starter project
 
 Try running the following commands:
 - dbt run
 - dbt test
-
 
 ### Resources:
 - Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
