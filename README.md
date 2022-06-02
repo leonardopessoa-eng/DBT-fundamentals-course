@@ -1,5 +1,11 @@
 Welcome to my first dbt project! This is a project developed during the training in dbt fundamentals course.
 
+### Features
+
+- SQL
+- GCP
+- DBT
+
 ### Using the starter project
 
 Try running the following commands:
